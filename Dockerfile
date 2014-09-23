@@ -1,7 +1,7 @@
 FROM ubuntu:trusty
 
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git python phantomjs imagemagick
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git python python-mysqldb phantomjs imagemagick
 RUN apt-get autoremove -y
 RUN apt-get clean all
 
@@ -13,8 +13,8 @@ RUN git submodule update --init --recursive
 RUN sed -i 's/.setLevel(logging.DEBUG)/.setLevel(logging.INFO)/' dpxdt/runserver.py
 
 RUN echo "SECRET_KEY = \"$(openssl rand -base64 32)\"" > secrets.py
-RUN echo "server.db.drop_all()\nserver.db.create_all()\n" | ./run_shell.sh
 
+ADD ./launch.sh /dpxdt/launch.sh
 
 EXPOSE 5000
-CMD ["./run_combined.sh"]
+CMD ["./launch.sh"]
