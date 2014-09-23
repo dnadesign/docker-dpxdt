@@ -15,11 +15,11 @@ If you are testing this locally on OS X via boot2docker - don't forget forward O
 
 To use this image on it's own (with the default sqlite database at /tmp/test.db), simply run via:
 
-    docker run -d -p 5000:5000 --name dpxdt jeremyolliver/dpxdt
+    docker run -d -p 5000:5000 --name dpxdt dnadesign/dpxdt
 
 ### With pre-existing database
 
-    docker run -d -p 5000:5000 --name dpxdt -e DATABASE_URI="mysql://username:password@host/dbname" jeremyolliver/dpxdt
+    docker run -d -p 5000:5000 --name dpxdt -e DATABASE_URI="mysql://username:password@host/dbname" dnadesign/dpxdt
 
 ### With Mysql Docker Image
 
@@ -39,9 +39,9 @@ Create the database and credentials
 
 Run dpxdt with the newly created database URI (use 'mysql' as the hostname of the linked container)
 
-    docker run -d -p 5000:5000 --link mysql:mysql --name dpxdt -e DATABASE_URI="mysql://username:password@mysql/dbname" jeremyolliver/dpxdt
+    docker run -d -p 5000:5000 --link mysql:mysql --name dpxdt -e DATABASE_URI="mysql://username:password@mysql/dbname" dnadesign/dpxdt
 
 ## Build
 
     cd docker-dpxdt
-    docker build --rm -t jeremyolliver/dpxdt .
+    docker build --rm -t dnadesign/dpxdt .
